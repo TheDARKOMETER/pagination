@@ -97,9 +97,7 @@ export default function PaginationComponent() {
             })
         } catch {
             setCurrentPage(currentPage - 1)
-        } finally {
-            pageLinks()
-        }
+        } 
     }
 
     return (
