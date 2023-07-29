@@ -30,16 +30,13 @@ function paginationReducer(state, action) {
 }
 
 export default function PaginationComponent() {
-    const [items, setItems] = useState([
-        "Milk", "Eggs", "Cheese", "Chicken", "Bread", "Hazelnut", "Chocolate", "Peanut Butter",
-        "Apple", "Orange", "Banana", "Grapes", "Strawberries", "Carrots", "Potatoes", "Tomatoes",
-        "Rice", "Pasta", "Chicken Wings", "Salmon", "Yogurt", "Ice Cream", "Pizza", "Burger",
-        "Lettuce", "Cucumber", "Onion", "Garlic", "Avocado", "Watermelon", "Pineapple",
-        "Cantaloupe", "Blueberries", "Broccoli", "Cauliflower", "Spinach", "Kale", "Bell Peppers",
-        "Mango", "Peach", "Pear", "Cherries", "Plum", "Lemon", "Lime", "Pomegranate",
-        "Asparagus", "Zucchini", "Eggplant", "Celery", "Sweet Potato", "Pumpkin", "Corn",
-        "Squash", "Mushrooms", "Blackberries", "Raspberries", "Apricot", "Kiwi", "Papaya"
-    ])
+    const [items] = useState(["Milk", "Eggs", "Cheese", "Chicken", "Bread", "Hazelnut", "Chocolate", "Peanut Butter", "Apple", "Orange", "Banana", "Grapes",
+        "Strawberries", "Carrots", "Potatoes", "Tomatoes", "Rice", "Pasta", "Chicken Wings", "Salmon", "Yogurt", "Ice Cream", "Pizza", "Burger", "Lettuce", "Cucumber", "Onion",
+        "Garlic", "Avocado", "Watermelon", "Pineapple", "Cantaloupe", "Blueberries", "Broccoli", "Cauliflower", "Spinach", "Kale", "Bell Peppers", "Mango", "Peach", "Pear", "Cherries",
+        "Plum", "Lemon", "Lime", "Pomegranate", "Asparagus", "Zucchini", "Eggplant", "Celery", "Sweet Potato", "Pumpkin", "Corn", "Squash", "Mushrooms", "Blackberries", "Raspberries",
+        "Apricot", "Kiwi", "Papaya", "Water", "Tea", "Coffee", "Soda", "Juice", "Beer", "Wine", "Whiskey", "Vodka", "Gin", "Coca Cola", "Pepsi", "Sprite", "Fanta", "Mountain Dew",
+        "Dr. Pepper", "Red Bull", "Monster"]
+    )
     const [paginationState, dispatch] = useReducer(paginationReducer, { itemsPerPage: 4 })
     const [currentPage, setCurrentPage] = useState(0)
     const quantityRef = useRef()
