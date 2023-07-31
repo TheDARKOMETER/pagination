@@ -4,14 +4,15 @@ function paginationReducer(state, action) {
     switch (action.type) {
         case "SET_ITEMS_PER_PAGE":
             return { ...state, itemsPerPage: action.payload }
-        case "CALCULATE_PAGE_NUMBERS":
-            return { ...state, pageNumbers: Math.ceil(action.payload.length / state.itemsPerPage) }
-        case "ASSIGN_ITEMS_INTO_PAGE":
+        case "UPDATE_PAGINATION":
+            const { itemsPerPage, items } = action.payload
+            const pageNumbers = Math.ceil(items.length / itemsPerPage)
+
             let pages = []
-            let initialItems = [...action.payload]
-            for (let x = 0; x < state.pageNumbers; x++) {
+            let initialItems = [...items]
+            for (let x = 0; x < pageNumbers; x++) {
                 let items = []
-                for (let y = 0; y < state.itemsPerPage; y++) {
+                for (let y = 0; y < itemsPerPage; y++) {
                     if (initialItems.length > 0) {
                         items.push(initialItems.shift())
                     } else {
@@ -23,7 +24,7 @@ function paginationReducer(state, action) {
                 }
                 pages.push(pageObj)
             }
-            return { ...state, pages: pages }
+            return { ...state, pageNumbers, pages }
         default:
             return state
     }
@@ -72,11 +73,7 @@ export default function PaginationComponent() {
     }
 
     useEffect(() => {
-        dispatch({ type: 'CALCULATE_PAGE_NUMBERS', payload: items })
-    }, [itemsPerPage, items])
-
-    useEffect(() => {
-        dispatch({ type: 'ASSIGN_ITEMS_INTO_PAGE', payload: items, currentPage: currentPage })
+        dispatch({ type: 'UPDATE_PAGINATION', payload: { items, itemsPerPage } })
     }, [itemsPerPage, items])
 
 
@@ -97,7 +94,7 @@ export default function PaginationComponent() {
             })
         } catch {
             setCurrentPage(currentPage - 1)
-        } 
+        }
     }
 
     return (
